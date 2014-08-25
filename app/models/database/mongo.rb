@@ -1,5 +1,5 @@
 module Database
-  class Mongo < Base
+  class Mongo < Database::Base
     include Mongoid::Document
 
     BACKUPS_PATH = "#{Rails.root}/public/system/backups/mongo"
