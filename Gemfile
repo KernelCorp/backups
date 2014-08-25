@@ -46,3 +46,5 @@ gem 'activeadmin-mongoid', github: 'elia/activeadmin-mongoid', branch: 'rails4'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'whenever'

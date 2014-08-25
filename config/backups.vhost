@@ -1,0 +1,27 @@
+upstream backups_server {
+server unix:/var/www/backups/shared/unicorn.sock fail_timeout=0;
+}
+
+server {
+  listen 80;
+
+
+  client_max_body_size 1G;
+  server_name backups.kerweb.ru;
+  keepalive_timeout 5;
+  root /var/www/backups/current/public;
+      try_files $uri/index.html $uri.html $uri @myapp;
+
+  location @myapp {
+      proxy_pass http://backups_server;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $http_host;
+      proxy_redirect off;
+      proxy_set_header X-Forwarded-Proto $scheme;
+  }
+
+error_page 500 502 503 504 /500.html;
+location = /500.html {
+  root /var/www/backups/current/public;
+}
+}
