@@ -10,6 +10,8 @@ class App
 
   validates_presence_of :database
 
+  before_create :set_default_db_name
+
   delegate :rm_backup, to: :database
 
   def do_backup
@@ -17,4 +19,9 @@ class App
     backups.create file_name: file_name
     backups.first.destroy if backups.count > keep_backups
   end
+
+  protected
+    def set_default_db_name
+      self.db_name = "#{name}_production" if db_name.blank?
+    end
 end

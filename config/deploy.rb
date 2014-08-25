@@ -23,7 +23,7 @@ set :whenever_command, 'bundle exec whenever'
 
 set :scm, :git
 set :repository, 'https://github.com/KernelCorp/backups.git'
-set :branch, 'develop' # Ветка из которой будем тянуть код для деплоя.
+set :branch, 'master' # Ветка из которой будем тянуть код для деплоя.
 set :deploy_via, :remote_cache # Указание на то, что стоит хранить кеш репозитария локально и с каждым деплоем лишь подтягивать произведенные изменения. Очень актуально для больших и тяжелых репозитариев.
 
 role :web, domain
