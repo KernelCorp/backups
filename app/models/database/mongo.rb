@@ -6,7 +6,7 @@ module Database
 
     def do_backup(db_name)
       folder_name = generate_name(db_name)
-      full_path = "#{BACKUPS_PATH}/folder_name"
+      full_path = "#{BACKUPS_PATH}/#{folder_name}"
       `mongodump #{user_cmd} -d #{db_name} -o #{full_path}`
       folder_name
     end

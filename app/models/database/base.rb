@@ -4,7 +4,10 @@ module Database
 
     field :user
     field :password
+    field :_type
 
-    belongs_to :app
+    has_many :app
+
+    validates_presence_of :_type
   end
 end

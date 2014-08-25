@@ -241,3 +241,41 @@ ActiveAdmin.setup do |config|
   # config.filters = true
 
 end
+module ActiveAdmin
+  module Filters
+    module FormtasticAddons
+      def klass
+        @object.class
+      end
+
+      def polymorphic_foreign_type?(method)
+        false
+      end
+    end
+  end
+end
+
+module ActiveAdmin
+  module ViewHelpers
+    module DisplayHelper
+      const_set :DISPLAY_NAME_FALLBACK, ->{
+        name, klass = "", self.class
+        name << klass.model_name.human         if klass.respond_to? :model_name
+        #name << " ##{send(klass.primary_key)}" if klass.respond_to? :primary_key
+        name.present? ? name : to_s
+      }
+    end
+  end
+end
+
+module ActiveAdmin::Mongoid::DocumentFix
+  extend ActiveSupport::Concern
+
+  module ClassMethods
+    def quoted_table_name
+      nil
+    end
+  end
+end
+
+Mongoid::Document.send :include, ActiveAdmin::Mongoid::DocumentFix
