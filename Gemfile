@@ -48,3 +48,11 @@ gem 'activeadmin-mongoid', github: 'elia/activeadmin-mongoid', branch: 'rails4'
 # gem 'debugger', group: [:development, :test]
 
 gem 'whenever'
+
+
+group :development do
+  gem 'quiet_assets'
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+  gem 'net-ssh', '~> 2.7.0'
+end
