@@ -15,6 +15,6 @@ class App
   def do_backup
     file_name = database.do_backup db_name
     backups.create file_name: file_name
-    backups.first.delete if backups.count > keep_backups
+    backups.first.destroy if backups.count > keep_backups
   end
 end

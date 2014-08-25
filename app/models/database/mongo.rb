@@ -12,7 +12,7 @@ module Database
     end
 
     def rm_backup(folder_name)
-      `rm -rf #{BACKUPS_PATH}/folder_name`
+      `rm -rf #{BACKUPS_PATH}/#{folder_name}`
     end
 
     private
