@@ -5,6 +5,7 @@ ActiveAdmin.register App do
   member_action :do_backup, method: :post do
     app = App.find params[:id]
     app.do_backup
+    flash[:notice] = 'Backup was created successfully'
     redirect_to :back
   end
 
